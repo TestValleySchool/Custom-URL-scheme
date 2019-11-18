@@ -1,6 +1,8 @@
 package nl.xservices.plugins;
 
 import android.content.Intent;
+import android.os.Bundle;
+
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaActivity;
 import org.apache.cordova.CordovaPlugin;
@@ -73,8 +75,11 @@ public class LaunchMyApp extends CordovaPlugin {
 
   @Override
   public void onNewIntent(Intent intent) {
-    final String intentString = intent.getDataString();
-    if (intentString != null && intent.getScheme() != null) {
+    //final String intentString = intent.getDataString();
+    final String intentString = intent.getStringExtra("uri");
+    Bundle extras = intent.getExtras();
+
+    if (intentString != null) { // && intent.getScheme() != null) {
       if (resetIntent){
         intent.setData(null);
       }
